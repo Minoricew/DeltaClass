@@ -1,0 +1,59 @@
+body {
+  background-color: transparent;
+}
+
+::-webkit-scrollbar {
+  width: 0 !important;
+}
+
+@font-face {
+  font-family: 'ProductSans';
+  src: url('./static/Product-Sans.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'BlenderPro';
+  src: url('./static/BlenderPro-Medium.ttf') format('truetype');
+}
+
+* {
+  font-family: 'ProductSans';
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+}
+
+.v-custom-text-field-hint {
+  margin-top: -16px;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 50%);
+}
+
+.v-custom-text-field-hint-black {
+  margin-top: -16px;
+  font-size: 14px;
+  color: rgba(0, 0, 0, 50%);
+}
+
+.v-custom-text-field-hint-white {
+  margin-top: -16px;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 80%);
+}
+
+.v-custom-text-field-hint-white-no-margin {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 80%);
+  margin-bottom: 0px !important;
+}
+
+.v-custom-text-field-hint-error {
+  margin-top: -16px;
+  font-size: 14px;
+  color: rgba(197, 85, 85, 70%);
+}
+
+.v-btn-toggle-inside {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}

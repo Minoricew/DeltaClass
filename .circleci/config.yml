@@ -1,0 +1,39 @@
+version: 2.1
+orbs:
+  node: circleci/node@4.5.1
+jobs:
+  Build app package:
+    docker:
+      - image: electronuserland/builder:wine
+    environment:
+      - WINEDEBUG: -all
+    steps:
+      - checkout
+      - run:
+          name: Install Node.JS v16.20.2 and yarn
+          command: |
+            curl -O https://nodejs.org/dist/v16.20.2/node-v16.20.2-linux-x64.tar.xz
+            tar -xvf node-v16.20.2-linux-x64.tar.xz
+            mv node-v16.20.2-linux-x64 /usr/local/lib/nodejs
+            echo 'export NODEJS_HOME=/usr/local/lib/nodejs' >> ~/.bashrc
+            echo 'export PATH=$NODEJS_HOME/bin:$PATH' >> ~/.bashrc
+            source ~/.bashrc
+            npm install yarn --global
+      - run:
+          name: Install dependencies
+          command: |
+            export NODE_OPTIONS=--openssl-legacy-provider
+            yarn install
+      - run:
+          name: Build app package
+          command: |
+            export NODE_OPTIONS=--openssl-legacy-provider
+            yarn build
+      - store_artifacts:
+          path: build/DeltaClass-Setup.exe
+          destination: DeltaClass-Setup.exe
+workflows:
+  version: 2
+  build-and-deploy:
+    jobs:
+      - Build app package

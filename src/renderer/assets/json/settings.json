@@ -1,0 +1,191 @@
+{
+  "name": "Delta_Class_Settings_Config_File",
+  "types": [
+    {
+      "name": "Delta·Class 全局",
+      "id": "Settings_General",
+      "icon": "mdi-cog-outline",
+      "description": "启动、更新、备份、时间、语言"
+    },
+    {
+      "name": "网络与连接",
+      "id": "Settings_Connectivity",
+      "icon": "mdi-wifi-strength-outline",
+      "description": "WLAN、以太网、与 Delta 的连接"
+    },
+    {
+      "name": "主屏",
+      "id": "Settings_Index",
+      "icon": "mdi-home-outline",
+      "description": "主屏幕样式、天气、通知面板"
+    },
+    {
+      "name": "场景服务",
+      "id": "Settings_Assistant",
+      "icon": "mdi-assistant",
+      "description": "智能提醒、生活通知、自动化"
+    },
+    {
+      "name": "个性化",
+      "id": "Settings_Personalize",
+      "icon": "mdi-palette-outline",
+      "description": "主题、背景、应用样式"
+    },
+    {
+      "name": "显示",
+      "id": "Settings_Display",
+      "icon": "mdi-brightness-6",
+      "description": "窗口、字体大小、显示器"
+    },
+    {
+      "name": "班级与学校",
+      "id": "Settings_SchoolAndClass",
+      "icon": "mdi-school-outline",
+      "description": "班级信息、课程表、时间安排"
+    },
+    {
+      "name": "状态栏与操作栏",
+      "id": "Settings_FloatBars",
+      "icon": "mdi-menu-swap-outline",
+      "description": "状态栏与操作栏样式、行为、显示内容"
+    },
+    {
+      "name": "快捷键与命令",
+      "id": "Settings_QuickCommand",
+      "icon": "mdi-apple-keyboard-command",
+      "description": "按键绑定、命令面板"
+    },
+    {
+      "name": "Delta·Class 安全",
+      "id": "Settings_Security",
+      "icon": "mdi-lock-outline",
+      "description": "密码认证、设备锁"
+    },
+    {
+      "name": "信任",
+      "id": "Settings_TrustCenter",
+      "icon": "mdi-shield-outline",
+      "description": "隐私、权限、数据"
+    },
+    {
+      "name": "Delta·Class Remote Access",
+      "id": "Settings_DCA",
+      "icon": "mdi-cloud-outline",
+      "description": "远程访问、集控、可访问范围"
+    },
+    {
+      "name": "插件",
+      "id": "Settings_Additions",
+      "icon": "mdi-widgets-outline",
+      "description": "管理已安装的插件、安装新插件"
+    },
+    {
+      "name": "开发者选项",
+      "id": "Restricted_Settings_DeveloperOptions",
+      "icon": "mdi-code-tags",
+      "description": "适用于 Delta·Class 的开发时选项",
+      "showCondition": { "type": "isEqual", "source": "Restricted_Settings_DeveloperOptions.Enabled", "destination": true }
+    },
+    {
+      "name": "关于",
+      "id": "Settings_About",
+      "icon": "mdi-information-outline",
+      "description": "关于 Delta·Class、更新"
+    }
+  ],
+  "Settings_General": {
+    "categories": [
+      {
+        "name": "启动选项",
+        "subId": "Startup",
+        "icon": "mdi-power"
+      },
+      {
+        "name": "时间",
+        "subId": "Time",
+        "icon": "mdi-clock-outline"
+      },
+      {
+        "name": "备份与恢复",
+        "subId": "BackupAndRestore",
+        "icon": "mdi-backup-restore"
+      },
+      {
+        "name": "语言与地区",
+        "subId": "Language",
+        "icon": "mdi-translate"
+      },
+      {
+        "name": "自动更新",
+        "subId": "AutoUpgrade",
+        "icon": "mdi-update"
+      }
+    ],
+    "Startup": [
+      {
+        "type": "switch",
+        "title": "随 Windows 启动 Delta·Class",
+        "description": "调整 Delta·Class 是否需要和 Windows 一起启动",
+        "itemId": "StartWithWindows",
+        "default": false,
+        "disabled": true,
+        "actionNeeded": "updateAutoStart"
+      },
+      {
+        "type": "selects",
+        "title": "Delta·Class 启动实现方式",
+        "description": "选择 Delta·Class 的启动实现方式",
+        "itemId": "AutoStartImplement",
+        "placeHolder": "启动实现方式",
+        "data": ["选择一个实现...", "Windows 用户启动列表", "任务计划程序", "注册表 (不推荐)", "Windows 服务 (不推荐)"],
+        "symmetry": [-1, 0, 1, 2, 3],
+        "objectEnableCondition": [false, true, true, true, true],
+        "default": -1,
+        "disabled": true,
+        "actionNeeded": "updateAutoStartImplement"
+      },
+      {
+        "type": "input",
+        "title": "启动延时",
+        "description": "Delta·Class 自动启动延时",
+        "itemId": "AutoStartDelay",
+        "placeHolder": "延时时间 (秒)",
+        "inputType": "number",
+        "required": true,
+        "default": 0,
+        "disabled": false,
+        "show_condition": {
+          "type": "isEqual",
+          "source": "Settings_General.Startup.AutoStartImplement",
+          "destination": 1
+        },
+        "actionNeeded": "updateAutoStartDelay"
+      }
+    ],
+    "Time": [
+      {
+        "type": "subpage",
+        "title": "日期与时间设置",
+        "description": "查看与修改日期与时间设置",
+        "subSettingsPageId": "TimeAndDatePage",
+        "disabled": false,
+        "subpageLayout": {
+          "headIcon": "mdi-clock-outline",
+          "pageMajorTitle": "日期与时间",
+          "pageSubTitle": "修改 Delta·Class 的时区、日期、时间设置, 与时间的显示方式",
+          "objects": [
+            {
+              "type": "switch",
+              "title": "使用系统时间",
+              "description": "使用通过 JavaScript Date 实例获取到的 OS 时间",
+              "itemId": "UseSystemTime",
+              "default": true,
+              "disabled": true,
+              "applyAfterRestartApp": true
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
