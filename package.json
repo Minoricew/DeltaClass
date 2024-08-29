@@ -47,7 +47,7 @@
     "sass-loader": "9.0.0",
     "vuetify": "^2.5.10",
     "vuetify-loader": "^1.9.2",
-    "webpack": "4.46.0",
+    "webpack": "5.94.0",
     "webpack-node-externals": "^3.0.0"
   },
   "dependencies": {
