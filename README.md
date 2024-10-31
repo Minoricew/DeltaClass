@@ -1,3 +1,7 @@
+> [!CAUTION]
+> 此项目已过时并停止更新。
+> 使用 Tauri 和 Vue 3 重构的 [DeltaClass-2E](https://github.com/Minoricew/DeltaClass-2E) 将在不久后发布, 记得去看看!
+
 <div align="center"><img src="https://s2.loli.net/2023/12/09/R3Kd6mwIJoSHXux.png" alt="Delta·Class Logo" width="70" /></div>
 
 <h1 align="center" style="font-weight: 100;">Delta·Class</h1>
